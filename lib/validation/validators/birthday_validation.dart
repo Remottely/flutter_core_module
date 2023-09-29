@@ -1,4 +1,3 @@
-
 import 'package:flutter_core_module/flutter_core_module.dart';
 
 RegExp regExp = RegExp(
