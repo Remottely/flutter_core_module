@@ -23,7 +23,7 @@ class ValidationBuilder {
     return this;
   }
 
-  ValidationBuilder fullNameAtLeast2Names() {
+  ValidationBuilder fullName() {
     validations.add(FullNameValidation(fieldName));
     return this;
   }
