@@ -15,16 +15,16 @@ class FirebaseFirestoreAdapter implements IFirebaseFirestoreClient {
           : await firebaseFirestore.collection(path).get();
 
       if (querySnapshot.docs.isNotEmpty) {
-        log('[FIRESETORE_GET_COLLECTION_IS_NOT_EMPTY]');
+        log('[FIRESTORE_GET_COLLECTION_IS_NOT_EMPTY]');
         final List<Map<String, dynamic>> listMap =
             querySnapshot.docs.map((doc) => doc.data()).toList();
         return listMap;
       } else {
-        log('[FIRESETORE_GET_COLLECTION_IS_EMPTY]');
+        log('[FIRESTORE_GET_COLLECTION_IS_EMPTY]');
         throw DomainErrorType.unexpected;
       }
     } catch (error) {
-      log('[FIRESETORE_GET_COLLECTION_ERROR]: $error');
+      log('[FIRESTORE_GET_COLLECTION_ERROR]: $error');
       throw DomainErrorType.unexpected;
     }
   }
@@ -36,16 +36,16 @@ class FirebaseFirestoreAdapter implements IFirebaseFirestoreClient {
           await firebaseFirestore.doc(path).get();
 
       if (documentSnapshot.exists) {
-        log('[FIRESETORE_GET_DOCUMENT_EXISTS]');
+        log('[FIRESTORE_GET_DOCUMENT_EXISTS]');
         final Map<String, dynamic> map = documentSnapshot.data()!;
 
         return map;
       } else {
-        log('[FIRESETORE_GET_DOCUMENT_DOES_NOT_EXIST]');
+        log('[FIRESTORE_GET_DOCUMENT_DOES_NOT_EXIST]');
         throw DomainErrorType.unexpected;
       }
     } catch (error) {
-      log('[FIRESETORE_GET_DOCUMENT_ERROR]: $error');
+      log('[FIRESTORE_GET_DOCUMENT_ERROR]: $error');
       throw DomainErrorType.unexpected;
     }
   }
@@ -58,10 +58,10 @@ class FirebaseFirestoreAdapter implements IFirebaseFirestoreClient {
     try {
       await firebaseFirestore.collection(path).add(object);
 
-      log('[FIRESETORE_ADD_DOCUMENT_SUCCESS]');
+      log('[FIRESTORE_ADD_DOCUMENT_SUCCESS]');
       return object;
     } catch (error) {
-      log('[FIRESETORE_ADD_DOCUMENT_ERROR]: $error');
+      log('[FIRESTORE_ADD_DOCUMENT_ERROR]: $error');
       throw DomainErrorType.unexpected;
     }
   }
@@ -77,10 +77,10 @@ class FirebaseFirestoreAdapter implements IFirebaseFirestoreClient {
           .doc('$path/$documentId')
           .set(object); // TODO - IMPLEMENT THIS FUNCTION
 
-      log('[FIRESETORE_SET_DOCUMENT_SUCCESS]');
+      log('[FIRESTORE_SET_DOCUMENT_SUCCESS]');
       return object;
     } catch (error) {
-      log('[FIRESETORE_SET_DOCUMENT_ERROR]: $error');
+      log('[FIRESTORE_SET_DOCUMENT_ERROR]: $error');
       throw DomainErrorType.unexpected;
     }
   }
@@ -101,7 +101,7 @@ class FirebaseFirestoreAdapter implements IFirebaseFirestoreClient {
           );
       return result;
     } catch (error) {
-      log('[FIRESETORE_SNAPSHOT_COLLECTION_ERROR]: $error');
+      log('[FIRESTORE_SNAPSHOT_COLLECTION_ERROR]: $error');
       throw DomainErrorType.unexpected;
     }
   }
